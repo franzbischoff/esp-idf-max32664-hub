@@ -49,6 +49,7 @@ coverage_report/
 
 dev
 
+.component_hash
 **/dist/**
 build
 sdkconfig

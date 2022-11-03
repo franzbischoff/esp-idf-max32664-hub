@@ -1,10 +1,8 @@
-version: "0.9.0"
+version: "0.9.1"
 description: MAX32664 Hub library for ESP-IDF
 url: https://github.com/franzbischoff/esp-idf-max32664-hub
 files:
   exclude:
     - ".whitesource"
-    - ".gitconfig"
-    - ".gitignore"
 dependencies:
   idf: ">=4.1.0"
