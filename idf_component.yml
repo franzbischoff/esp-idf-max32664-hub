@@ -1,4 +1,4 @@
-version: "0.9.1"
+version: "0.9.2"
 description: MAX32664 Hub library for ESP-IDF
 url: https://github.com/franzbischoff/esp-idf-max32664-hub
 files:

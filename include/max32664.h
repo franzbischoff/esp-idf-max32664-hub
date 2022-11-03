@@ -58,12 +58,12 @@ extern "C" {
 #ifndef CONFIG_I2C_MASTER_SDA
 #define I2C_MASTER_SDA GPIO_NUM_21
 #else
-#define I2C_MASTER_SDA CONFIG_I2C_MASTER_SDA
+#define I2C_MASTER_SDA (gpio_num_t)(CONFIG_I2C_MASTER_SDA)
 #endif
 #ifndef CONFIG_I2C_MASTER_SCL
 #define I2C_MASTER_SCL GPIO_NUM_22
 #else
-#define I2C_MASTER_SCL CONFIG_I2C_MASTER_SCL
+#define I2C_MASTER_SCL (gpio_num_t)(CONFIG_I2C_MASTER_SCL)
 #endif
 #ifndef CONFIG_I2C_MASTER_TIMEOUT_MS
 #define I2C_MASTER_TIMEOUT_MS 1000
@@ -73,22 +73,22 @@ extern "C" {
 #ifndef CONFIG_I2C_MAX32664_RESET_PIN
 #define I2C_MAX32664_RESET_PIN GPIO_NUM_19
 #else
-#define I2C_MAX32664_RESET_PIN CONFIG_I2C_MAX32664_RESET_PIN
+#define I2C_MAX32664_RESET_PIN (gpio_num_t)(CONFIG_I2C_MAX32664_RESET_PIN)
 #endif
 #ifndef CONFIG_I2C_MAX32664_MFIO_PIN
 #define I2C_MAX32664_MFIO_PIN GPIO_NUM_18
 #else
-#define I2C_MAX32664_MFIO_PIN CONFIG_I2C_MAX32664_MFIO_PIN
+#define I2C_MAX32664_MFIO_PIN (gpio_num_t)(CONFIG_I2C_MAX32664_MFIO_PIN)
 #endif
 #ifndef CONFIG_I2C_MAX32664_PULSE_WIDTH
-#define I2C_MAX32664_PULSE_WIDTH 411
+#define I2C_MAX32664_PULSE_WIDTH (uint16_t)(411)
 #else
-#define I2C_MAX32664_PULSE_WIDTH CONFIG_I2C_MAX32664_PULSE_WIDTH
+#define I2C_MAX32664_PULSE_WIDTH (uint16_t)(CONFIG_I2C_MAX32664_PULSE_WIDTH)
 #endif
 #ifndef CONFIG_I2C_MAX32664_SAMPLE_RATE
-#define I2C_MAX32664_SAMPLE_RATE 200
+#define I2C_MAX32664_SAMPLE_RATE (uint16_t)(200)
 #else
-#define I2C_MAX32664_SAMPLE_RATE CONFIG_I2C_MAX32664_SAMPLE_RATE
+#define I2C_MAX32664_SAMPLE_RATE (uint16_t)(CONFIG_I2C_MAX32664_SAMPLE_RATE)
 #endif
 
 // general GPIO defines for clarity
@@ -743,7 +743,7 @@ private:
   uint8_t _address = I2C_MAX32664_ADDR;
   uint32_t _writeCoefArr[3]{};
   uint8_t _userSelectedMode;
-  uint8_t _sampleRate = I2C_MAX32664_SAMPLE_RATE;
+  uint8_t _sampleRate = 0; // AGC_NUM_SAMPLES average (0-255)
   bool _i2cStarted = false;
 
   size_t _bufferSize = I2C_BUFFER_LENGTH;
@@ -755,7 +755,7 @@ private:
   size_t _txLength = 0;
   uint16_t _txAddress = 0;
 
-  uint32_t _timeOutMillis = I2C_MASTER_TIMEOUT_MS / portTICK_RATE_MS; // default in i2c is 50ms
+  uint32_t _timeOutMillis = (uint32_t)((float)(I2C_MASTER_TIMEOUT_MS) / (float)(portTICK_RATE_MS)); // default in i2c is 50ms
   bool _nonStop = false;
 
 #if defined(CONFIG_ENABLE_HAL_LOCKS)
