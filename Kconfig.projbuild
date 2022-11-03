@@ -1,0 +1,68 @@
+menu "MAX32664 I2C config"
+
+    config I2C_MASTER_SCL
+        int "SCL GPIO Num"
+        default 9 if IDF_TARGET_ESP32S2|| IDF_TARGET_ESP32S3
+        default 22 if IDF_TARGET_ESP32 || IDF_TARGET_ESP32C3
+        help
+            GPIO number for I2C Master clock line.
+
+    config I2C_MASTER_SDA
+        int "SDA GPIO Num"
+        default 8 if IDF_TARGET_ESP32S2|| IDF_TARGET_ESP32S3
+        default 21 if IDF_TARGET_ESP32 || IDF_TARGET_ESP32C3
+        help
+            GPIO number for I2C Master data line.
+
+    config I2C_MASTER_TIMEOUT_MS
+        int "I2C Master Timeout (ms)"
+        default 1000
+        help
+            Timeout for I2C master operations.
+
+    config I2C_MAX32664_ADDR
+        hex "MAX32664 I2C Address"
+        default 0x55
+        help
+            I2C address of MAX32664.
+
+    config I2C_MAX32664_RESET_PIN
+        int "MAX32664 Reset GPIO Num"
+        default 19
+        help
+            GPIO number for MAX32664 Reset.
+
+    config I2C_MAX32664_MFIO_PIN
+        int "MAX32664 MFIO GPIO Num"
+        default 18
+        help
+            GPIO number for MAX32664 MFIO.
+
+    config I2C_MAX32664_PULSE_WIDTH
+        int "MAX32664 pulse width (us)"
+        default 411
+        range 69 411
+        help
+            Pulse width for MAX32664. Possible widths: 69, 118, 215, 411us
+
+    config I2C_MAX32664_SAMPLE_RATE
+        int "MAX32664 sample rate (Hz)"
+        default 200
+        range 50 3200
+        help
+            Sample rate for MAX32664. Possible samples: 50, 100, 200, 400, 800, 1000, 1600, 3200 samples/second.
+    config ENABLE_HAL_LOCKS
+        bool "Enable HAL Locks if you get problems with tasks"
+        default "n"
+        help
+            Enable HAL Locks if you get problems with tasks
+endmenu
+
+menu "FreeRTOS"
+    config FREERTOS_HZ
+        int "Tick rate (Hz)"
+        range 1 1000
+        default 1000
+        help
+            Select the tick rate at which FreeRTOS does pre-emptive context switching.
+endmenu
