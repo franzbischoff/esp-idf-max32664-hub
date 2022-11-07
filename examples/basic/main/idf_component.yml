@@ -2,6 +2,7 @@ version: "0.9.0"
 description: "The first basic example"
 dependencies:
   idf: ">=4.1.0"
-  franzbischoff/max32664-hub:
-    version: "~0.9.0"
+  workspaces:
+#  franzbischoff/max32664-hub:
+    version: ">=0.9.2"
     override_path: "../../../"

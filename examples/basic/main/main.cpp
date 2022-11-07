@@ -63,6 +63,7 @@ uint16_t sampleVal;
 Max32664_Hub bioHub(resPin, mfioPin);
 
 bioData body;
+
 // ^^^^^^^^^
 // What's this!? This is a type (like "int", "byte", "long") unique to the SparkFun
 // Pulse Oximeter and Heart Rate Monitor. Unlike those other types it holds
@@ -80,106 +81,107 @@ bioData body;
 // body.status     - Has a finger been sensed?
 
 // The familiar setup() function used on Arduino. But you can use directly in app_main()
-void setup() {
+void setup()
+{
+    esp_log_level_set(TAG, ESP_LOG_VERBOSE);        // Change this for less or more logging
+    esp_log_level_set("max32664", ESP_LOG_VERBOSE); // Change this for less or more logging
 
-  esp_log_level_set(TAG, ESP_LOG_VERBOSE);        // Change this for less or more logging
-  esp_log_level_set("max32664", ESP_LOG_VERBOSE); // Change this for less or more logging
+    if (CONFIG_FREERTOS_HZ != 1000) {
+        ESP_LOGE(TAG, "CONFIG_FREERTOS_HZ must be set to 1000!");
+        esp_system_abort("CONFIG_FREERTOS_HZ must be set to 1000!");
+    }
 
-  if(CONFIG_FREERTOS_HZ != 1000) {
-    ESP_LOGE(TAG, "CONFIG_FREERTOS_HZ must be set to 1000!");
-    esp_system_abort("CONFIG_FREERTOS_HZ must be set to 1000!");
-  }
+    // Initialize I2C bus before anything else
+    esp_err_t res = bioHub.i2c_bus_init(I2C_SDA_IO, I2C_SCL_IO);
+    ESP_ERROR_CHECK(res);
 
-  // Initialize I2C bus before anything else
-  esp_err_t res = bioHub.i2c_bus_init(I2C_SDA_IO, I2C_SCL_IO);
-  ESP_ERROR_CHECK(res);
+    res = (esp_err_t)bioHub.begin();
+    if (res == ESP_OK) { // Zero errors!
+        ESP_LOGI(TAG, "Sensor started!");
+    }
 
-  res = (esp_err_t)bioHub.begin();
-  if (res == ESP_OK) { // Zero errors!
-    ESP_LOGI(TAG, "Sensor started!");
-  }
+    ESP_LOGI(TAG, "Configuring Sensor....");
+    ESP_LOGI(TAG, "Keep your finger out of the sensor until you see the first readings.");
+    // Configure Sensor and BPM mode , MODE_TWO also available
+    uint8_t error = bioHub.configSensorBpm(MODE_ONE);
+    if (error == 0) { // Zero errors.
+        ESP_LOGI(TAG, "Sensor configured.");
+    } else {
+        ESP_LOGE(TAG, "Error configuring sensor.");
+        ESP_LOGE(TAG, "Error: %u", error);
+    }
 
-  ESP_LOGI(TAG, "Configuring Sensor....");
-  ESP_LOGI(TAG, "Keep your finger out of the sensor until you see the first readings.");
-  // Configure Sensor and BPM mode , MODE_TWO also available
-  uint8_t error = bioHub.configSensorBpm(MODE_ONE);
-  if (error == 0) { // Zero errors.
-    ESP_LOGI(TAG, "Sensor configured.");
-  } else {
-    ESP_LOGE(TAG, "Error configuring sensor.");
-    ESP_LOGE(TAG, "Error: %u", error);
-  }
+    // Set pulse width.
+    error = bioHub.setPulseWidth(width);
+    if (error == 0) { // Zero errors.
+        ESP_LOGI(TAG, "Pulse Width Set.");
+    } else {
+        ESP_LOGE(TAG, "Could not set Pulse Width.");
+        ESP_LOGE(TAG, "Error: %u", error);
+    }
 
-  // Set pulse width.
-  error = bioHub.setPulseWidth(width);
-  if (error == 0) { // Zero errors.
-    ESP_LOGI(TAG, "Pulse Width Set.");
-  } else {
-    ESP_LOGE(TAG, "Could not set Pulse Width.");
-    ESP_LOGE(TAG, "Error: %u", error);
-  }
+    // Check that the pulse width was set.
+    pulseWidthVal = bioHub.readPulseWidth();
+    ESP_LOGI(TAG, "Pulse Width: %u", pulseWidthVal);
 
-  // Check that the pulse width was set.
-  pulseWidthVal = bioHub.readPulseWidth();
-  ESP_LOGI(TAG, "Pulse Width: %u", pulseWidthVal);
+    // Set sample rate per second. Remember that not every sample rate is
+    // available with every pulse width. Check hookup guide for more information.
+    error = bioHub.setSampleRate(samplrate);
+    if (error == 0) { // Zero errors.
+        ESP_LOGI(TAG, "Sample Rate Set to %u.", samplrate);
+    } else {
+        ESP_LOGE(TAG, "Could not set Sample Rate!");
+        ESP_LOGE(TAG, "Error: %u", error);
+    }
 
-  // Set sample rate per second. Remember that not every sample rate is
-  // available with every pulse width. Check hookup guide for more information.
-  error = bioHub.setSampleRate(samplrate);
-  if (error == 0) { // Zero errors.
-    ESP_LOGI(TAG, "Sample Rate Set to %u.", samplrate);
-  } else {
-    ESP_LOGE(TAG, "Could not set Sample Rate!");
-    ESP_LOGE(TAG, "Error: %u", error);
-  }
+    // bioHub.set_report_period(100);
 
-  // bioHub.set_report_period(100);
+    // Check sample rate.
+    sampleVal = bioHub.readSampleRate();
 
-  // Check sample rate.
-  sampleVal = bioHub.readSampleRate();
+    if (samplrate != sampleVal) {
+        ESP_LOGE(TAG, "Sample Rate not set correctly!");
+        ESP_LOGE(TAG, "Sample Rate retrieved: %u", sampleVal);
+    } else {
+        ESP_LOGI(TAG, "Sample rate is set to: %u", sampleVal);
+    }
 
-  if (samplrate != sampleVal) {
-    ESP_LOGE(TAG, "Sample Rate not set correctly!");
-    ESP_LOGE(TAG, "Sample Rate retrieved: %u", sampleVal);
-  } else {
-    ESP_LOGI(TAG, "Sample rate is set to: %u", sampleVal);
-  }
-
-  // Data lags a bit behind the sensor, if you're finger is on the sensor when
-  // it's being configured this delay will give some time for the data to catch
-  // up.
-  ESP_LOGI(TAG, "Loading up the buffer with data....");
-  vTaskDelay((portTICK_PERIOD_MS * 4000));
+    // Data lags a bit behind the sensor, if you're finger is on the sensor when
+    // it's being configured this delay will give some time for the data to catch
+    // up.
+    ESP_LOGI(TAG, "Loading up the buffer with data....");
+    vTaskDelay((portTICK_PERIOD_MS * 4000));
 }
 
-void loop() {
+void loop()
+{
+    uint8_t samples = bioHub.numSamplesOutFifo();
 
-  uint8_t samples = bioHub.numSamplesOutFifo();
+    // Information from the readSensor function will be saved to our "body"
+    // variable.
 
-  // Information from the readSensor function will be saved to our "body"
-  // variable.
+    // read all samples in fifo and use most recent one
+    while (samples) {
+        body = bioHub.readSensorBpm();
+        samples--;
+    }
 
-  // read all samples in fifo and use most recent one
-  while (samples) {
-    body = bioHub.readSensorBpm();
-    samples--;
-  }
+    ESP_LOGI(TAG, "%u, %u", body.heartRate, body.oxygen);
 
-  ESP_LOGI(TAG, "%u, %u", body.heartRate, body.oxygen);
-
-  vTaskDelay((portTICK_PERIOD_MS * 10));
+    vTaskDelay((portTICK_PERIOD_MS * 10));
 }
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 /// @brief main function
-void app_main(void) {
-  setup();
+void app_main(void)
+{
+    setup();
 
-  for (;;) {
-    loop();
-  }
+    for (;;) {
+        loop();
+    }
 }
 #ifdef __cplusplus
 }

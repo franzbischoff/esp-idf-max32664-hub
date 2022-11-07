@@ -6,5 +6,5 @@ idf_component_register(
 
 set_source_files_properties(
     "max32664.cpp"
-    PROPERTIES COMPILE_FLAGS "--std=gnu++11"
+    PROPERTIES COMPILE_FLAGS "-std=c++14"
 )

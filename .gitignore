@@ -46,14 +46,16 @@ docs/_static/NotoSansSC-Regular.otf
 *.gcno
 coverage.info
 coverage_report/
+partition_table
 
 dev
 
-.component_hash
+**/.component_hash
 **/dist/**
 build
 sdkconfig
+.devcontainer
 sdkconfig.old
 dependencies.lock
-**/managed_components/**
+managed_components
 .vscode*/**
