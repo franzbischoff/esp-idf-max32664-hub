@@ -7,5 +7,5 @@ files:
     - ".clang-format"
     - ".clang-tidy"
     - ".editorconfig"
-  dependencies:
+dependencies:
   idf: ">=4.1.0"
