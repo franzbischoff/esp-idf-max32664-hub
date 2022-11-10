@@ -1,6 +1,7 @@
+# trunk-ignore(yamllint/document-start)
 version: "0.9.3"
 description: MAX32664 Hub library for ESP-IDF
-url: https://github.com/franzbischoff/esp-idf-max32664-hub
+url: https://github.com/franzbischoff/esp-idf-max32664-hub/max32664-hub
 files:
   exclude:
     - ".whitesource"

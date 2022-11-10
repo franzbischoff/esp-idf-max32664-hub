@@ -1,9 +1,9 @@
 idf_component_register(
-    SRCS
+    SRCS "max32664.cpp"
     INCLUDE_DIRS "include"
     REQUIRES "driver"
 )
-set_source_files_properties(
-    "max32664.cpp"
-    PROPERTIES COMPILE_FLAGS "-std=c++14"
-)
+# set_source_files_properties(
+#     "wpa.c"
+#     PROPERTIES COMPILE_FLAGS "-Wno-parentheses-equality"
+# )

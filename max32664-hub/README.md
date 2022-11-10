@@ -4,21 +4,21 @@ This is a modified version of the original from [Sparkfun](https://github.com/sp
 
 Use it at your own risk.
 
----------------
+---
 
 ![SparkFun Pulse Oximeter and Heart Rate Monitor](https://cdn.sparkfun.com/assets/parts/1/3/6/6/4/15219-SparkFun_Pulse_Oximeter_and_Heart_Rate_Sensor_-_MAX30101__Qwiic_-01.jpg)
 
-[*SparkFun Pulse Oximeter and Heart Rate Monitor (SEN-15291)*](https://www.sparkfun.com/products/15219)
+[_SparkFun Pulse Oximeter and Heart Rate Monitor (SEN-15291)_](https://www.sparkfun.com/products/15219)
 
 The sensor is an I&sup2;C based [biometric](https://en.wikipedia.org/wiki/Biometrics) sensor, utilizing two chips from Maxim Integrated: the MAX32664 Bio Metric Sensor Hub and the MAX30101 Pulse Oximetry and Heart-Rate Module.
 
 ## Documentation
 
-* **[Hookup Guide](https://learn.sparkfun.com/tutorials/sparkfun-pulse-oximeter-and-heart-rate-monitor-hookup-guide)** - Basic hookup guide for the SparkFun Pulse Oximeter and Heart Rate Sensor.
+- **[Hookup Guide](https://learn.sparkfun.com/tutorials/sparkfun-pulse-oximeter-and-heart-rate-monitor-hookup-guide)** - Basic hookup guide for the SparkFun Pulse Oximeter and Heart Rate Sensor.
 
 ## Products that use this library
 
-* [SEN-15291](https://www.sparkfun.com/products/15219)- SparkFun Version 1.0
+- [SEN-15291](https://www.sparkfun.com/products/15219)- SparkFun Version 1.0
 
 ## License Information
 
@@ -32,15 +32,14 @@ release anything derivative under the same license.
 
 Distributed as-is; no warranty is given.
 
-
-# How to Use
+## How to Use
 
 1. This component is not available (yet) in the ESP-IDF component registry. So you need to clone this repository into
    your project's `components` folder.
 
 2. As a submodule: In your project, add this as a submodule to your `components/` directory.
 
-```
+```bash
 git submodule add https://github.com/franzbischoff/esp-idf-max32664-hub
 git submodule update --init --recursive
 ```
@@ -51,7 +50,7 @@ The library can be configured via `idf.py menuconfig` under `Component config->M
 
 One of the original examples was modified and is in the `example/` directory.
 
-# Tips, Tricks, and Gotchas
+## Tips, Tricks, and Gotchas
 
 This code was mainly rewritten to use the i2c driver directly from ESP-IDF. The original code was using the Wire library
 from Arduino. Since the time is short, I transcripted much of the Wire code, so this code can be further improved by

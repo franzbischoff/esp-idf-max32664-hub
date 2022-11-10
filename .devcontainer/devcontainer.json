@@ -1,0 +1,66 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.183.0/containers/ubuntu
+{
+  "name": "ESP-IDF QEMU",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": [
+    "ms-vscode.cpptools",
+    "espressif.esp-idf-extension",
+    "ms-vscode.cmake-tools",
+    "GitHub.copilot-labs",
+    "GitHub.copilot-nightly",
+    "spywhere.guides",
+    "natqe.reload",
+    "mutantdino.resourcemonitor",
+    "ExecutableBookProject.myst-highlight",
+    "ms-dotnettools.vscode-dotnet-runtime",
+    "chiehyu.vscode-astyle",
+    "cschlosser.doxdocgen",
+    "richie5um2.vscode-sort-json",
+    "redhat.vscode-yaml",
+    "qcz.text-power-tools",
+    "PascalReitermann93.vscode-yaml-sort",
+    "twxs.cmake",
+    "josetr.cmake-language-support-vscode",
+    "gerane.Theme-Twilight",
+    "usernamehw.errorlens",
+    "emilast.LogFileHighlighter",
+    "PKief.material-icon-theme",
+    "IBM.output-colorizer",
+    "trunk.io"
+  ],
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces,type=bind",
+  /* the path of workspace folder to be opened after container is running
+   */
+  "workspaceFolder": "/workspaces",
+  "mounts": [
+    "source=extensionCache,target=/root/.vscode-server/extensions,type=volume"
+  ],
+  "containerEnv": {
+    "IDF_CMAKE_WARN_UNINITIALIZED": "TRUE",
+    "IDF_MAINTAINER": "1"
+  },
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "idf.espIdfPath": "/opt/esp/idf",
+    "idf.useIDFKconfigStyle": true,
+    "idf.saveScope": 2,
+    "idf.customExtraPaths": "",
+    "idf.pythonBinPath": "/opt/esp/python_env/idf4.4_py3.8_env/bin/python",
+    "idf.toolsPath": "/opt/esp",
+    "idf.gitPath": "/usr/bin/git",
+    "idf.adapterTargetName": "esp32",
+    "idf.openOcdConfigs": [
+      "board/esp32-wrover-kit-1.8v.cfg",
+      "target/esp32.cfg"
+    ],
+    "C_Cpp.intelliSenseEngineFallback": "Enabled",
+    "C_Cpp.clang_format_fallbackStyle": "llvm",
+    "C_Cpp.clang_format_sortIncludes": false,
+    "C_Cpp.formatting": "clangFormat"
+  },
+  "runArgs": ["--privileged"]
+}

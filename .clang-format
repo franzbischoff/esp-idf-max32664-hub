@@ -162,7 +162,7 @@ SpacesInLineCommentPrefix:
   Minimum: 1
 SpacesInParentheses: false
 SpacesInSquareBrackets: false
-Standard: c++11
+Standard: Auto
 StatementAttributeLikeMacros:
   - Q_EMIT
 StatementMacros:

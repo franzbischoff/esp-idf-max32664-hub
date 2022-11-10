@@ -1,0 +1,7 @@
+# trunk-ignore(yamllint/document-start)
+ignored:
+  - DL3008
+
+trustedRegistries:
+  - docker.io
+  - "*.gcr.io"

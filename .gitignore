@@ -54,7 +54,7 @@ dev
 **/dist/**
 build
 sdkconfig
-.devcontainer
+# .devcontainer
 sdkconfig.old
 dependencies.lock
 managed_components
