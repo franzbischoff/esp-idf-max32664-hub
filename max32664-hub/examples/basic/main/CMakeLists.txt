@@ -1,4 +1,4 @@
 idf_component_register(
-    SRCS "main.cpp"
+    SRCS "example.cpp"
     REQUIRES "driver"
 )
