@@ -37,7 +37,8 @@ jobs:
       - name: Generate Documentation
         uses: mattnotmitt/doxygen-action@v1.9.4
         with:
-          doxyfile-path: docs/doxyfile
+          working-directory: docs
+          doxyfile-path: doxyfile
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:

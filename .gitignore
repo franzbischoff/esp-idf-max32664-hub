@@ -54,6 +54,7 @@ dev
 **/dist/**
 build
 sdkconfig
+docs/html
 # .devcontainer
 sdkconfig.old
 dependencies.lock
