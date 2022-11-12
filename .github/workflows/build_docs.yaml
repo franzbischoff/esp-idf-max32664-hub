@@ -37,7 +37,6 @@ jobs:
       - name: Generate Documentation
         uses: mattnotmitt/doxygen-action@v1.9.4
         with:
-          additional-packages: font-fira-code
           doxyfile-path: docs/doxyfile
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
