@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['read_5fadc_5frange_0',['read_adc_range',['../classmaxim_1_1Max32664Hub.html#a28d6e90960f9b40aa72e18ea4dc5cf6c',1,'maxim::Max32664Hub']]],
+  ['read_5falgo_5frange_1',['read_algo_range',['../classmaxim_1_1Max32664Hub.html#a888e95ca961919b86bdbc631b1ad2263',1,'maxim::Max32664Hub']]],
+  ['read_5falgo_5fsamples_2',['read_algo_samples',['../classmaxim_1_1Max32664Hub.html#ade4bb10af119653ca0df366f0247bfb1',1,'maxim::Max32664Hub']]],
+  ['read_5falgo_5fsensitivity_3',['read_algo_sensitivity',['../classmaxim_1_1Max32664Hub.html#a121487dac3e3a6d3e49d5115cf222ed3',1,'maxim::Max32664Hub']]],
+  ['read_5falgo_5fstep_5fsize_4',['read_algo_step_size',['../classmaxim_1_1Max32664Hub.html#a60c4d0fc04d01634691e029c30c2bc46',1,'maxim::Max32664Hub']]],
+  ['read_5falgorithm_5fversion_5',['read_algorithm_version',['../classmaxim_1_1Max32664Hub.html#a7a11d94354ad4095a0faaa210a567c91',1,'maxim::Max32664Hub']]],
+  ['read_5fbootloader_5fvers_6',['read_bootloader_vers',['../classmaxim_1_1Max32664Hub.html#a6479e1769c452817ad39fc0cf6eeb92b',1,'maxim::Max32664Hub']]],
+  ['read_5fbpm_7',['read_bpm',['../classmaxim_1_1Max32664Hub.html#a6cb7d488cfaacfcc35c8b0d16f1e4571',1,'maxim::Max32664Hub']]],
+  ['read_5fbpt_5falgo_5fdata_8',['read_bpt_algo_data',['../classmaxim_1_1Max32664Hub.html#a96779d9b5a67b8e807c4f72f5eca29c9',1,'maxim::Max32664Hub']]],
+  ['read_5fdiastolic_5fvals_9',['read_diastolic_vals',['../classmaxim_1_1Max32664Hub.html#a971628436d82b57260761747e46554dc',1,'maxim::Max32664Hub']]],
+  ['read_5fmax30101_5fstate_10',['read_max30101_state',['../classmaxim_1_1Max32664Hub.html#a50d48e48d259d00eb620d76c16d122f7',1,'maxim::Max32664Hub']]],
+  ['read_5fmaxim_5ffast_5fcoef_11',['read_maxim_fast_coef',['../classmaxim_1_1Max32664Hub.html#a4d48a45f0809940cea5cfde2c5fdc264',1,'maxim::Max32664Hub']]],
+  ['read_5fpulse_5fwidth_12',['read_pulse_width',['../classmaxim_1_1Max32664Hub.html#a6024abf9b8a0f30351a44b40f980bef1',1,'maxim::Max32664Hub']]],
+  ['read_5fregister_5faccel_13',['read_register_accel',['../classmaxim_1_1Max32664Hub.html#a53eb5a4e84d87ae96f16035015d010a1',1,'maxim::Max32664Hub']]],
+  ['read_5fregister_5fmax30101_14',['read_register_max30101',['../classmaxim_1_1Max32664Hub.html#a6b3ca251445be9aa8efcedc4d4ff8d46',1,'maxim::Max32664Hub']]],
+  ['read_5fsample_5frate_15',['read_sample_rate',['../classmaxim_1_1Max32664Hub.html#aea5219ea9c9ec12ea11a58798d17c8a2',1,'maxim::Max32664Hub']]],
+  ['read_5fsensor_16',['read_sensor',['../classmaxim_1_1Max32664Hub.html#acf849e9bd97ef6d4efa32d16977393f7',1,'maxim::Max32664Hub']]],
+  ['read_5fsensor_5fbpm_17',['read_sensor_bpm',['../classmaxim_1_1Max32664Hub.html#ac7570daed561855ae9ffdc18a74209e7',1,'maxim::Max32664Hub']]],
+  ['read_5fsensor_5fhub_5fstatus_18',['read_sensor_hub_status',['../classmaxim_1_1Max32664Hub.html#a3442ccb3229e5c3040f51279fac0da10',1,'maxim::Max32664Hub']]],
+  ['read_5fsensor_5fhub_5fversion_19',['read_sensor_hub_version',['../classmaxim_1_1Max32664Hub.html#afd7960e55bd1130c5b858f99855a1b6d',1,'maxim::Max32664Hub']]],
+  ['read_5fspo2_5falgo_5fcoef_20',['read_spo2_algo_coef',['../classmaxim_1_1Max32664Hub.html#ae85b9cb245f60251a7024d2adeffc51d',1,'maxim::Max32664Hub']]],
+  ['read_5fsystolic_5fvals_21',['read_systolic_vals',['../classmaxim_1_1Max32664Hub.html#ada0ded8530edbeb17df9d1e3ea194b91',1,'maxim::Max32664Hub']]]
+];

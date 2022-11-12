@@ -11,6 +11,7 @@ RUN apt-get update \
   curl \
   git \
   doxygen \
+  graphviz \
   astyle \
   mlocate \
   nano \
@@ -45,12 +46,12 @@ RUN wget --no-verbose https://github.com/hadolint/hadolint/releases/download/v2.
 
 
 # installed dotnet for Astyle plugin. You'll get some warning about missing dotnet, but you can ignore it
-RUN wget --no-verbose https://dot.net/v1/dotnet-install.sh \
-  && chmod 755 dotnet-install.sh \
-  && ./dotnet-install.sh -c STS \
-  && rm dotnet-install.sh
+# RUN wget --no-verbose https://dot.net/v1/dotnet-install.sh \
+#   && chmod 755 dotnet-install.sh \
+#   && ./dotnet-install.sh -c STS \
+#   && rm dotnet-install.sh
 
-RUN pip install --no-cache-dir -r /opt/esp/idf/docs/requirements.txt
+# RUN pip install --no-cache-dir -r /opt/esp/idf/docs/requirements.txt
 
 RUN echo "source /opt/esp/idf/export.sh > /dev/null 2>&1" >> ~/.bashrc \
   && updatedb
