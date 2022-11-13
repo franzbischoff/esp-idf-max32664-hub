@@ -29,12 +29,12 @@ jobs:
       matrix:
         idf_ver:
           [
-            "release-v4.1",
-            "release-v4.2",
+            # "release-v4.1",
+            # "release-v4.2",
             "release-v4.3",
-            "release-v4.4",
-            "release-v5.0",
-            "latest",
+            # "release-v4.4", # works
+            # "release-v5.0",
+            # "latest",
           ]
         idf_target: ["esp32"]
         # include:
@@ -45,10 +45,10 @@ jobs:
         #   - idf_ver: "release-v4.4"
         #     idf_target: esp32s3
     runs-on: ubuntu-latest
-    # permissions:
-    #   actions: read
-    #   contents: read
-    #   security-events: write
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
     container: espressif/idf:${{ matrix.idf_ver }}
     steps:
       - name: Update git
@@ -73,7 +73,7 @@ jobs:
         # queries: security-extended,security-and-quality
       - name: Build for ESP32
         env:
-          PLATFORM: linux
+          PLATFORM: linux64
           IDF_TARGET: ${{ matrix.idf_target }}
         shell: bash
         run: |
