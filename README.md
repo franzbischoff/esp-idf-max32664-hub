@@ -10,11 +10,13 @@ Use it at your own risk.
 
 [_SparkFun Pulse Oximeter and Heart Rate Monitor (SEN-15291)_](https://www.sparkfun.com/products/15219)
 
-The sensor is an I&sup2;C based [biometric](https://en.wikipedia.org/wiki/Biometrics) sensor, utilizing two chips from Maxim Integrated: the MAX32664 Bio Metric Sensor Hub and the MAX30101 Pulse Oximetry and Heart-Rate Module.
+The sensor is an I&sup2;C based [biometric](https://en.wikipedia.org/wiki/Biometrics) sensor, utilizing two chips from
+Maxim Integrated: the MAX32664 Bio Metric Sensor Hub and the MAX30101 Pulse Oximetry and Heart-Rate Module.
 
 ## Documentation
 
-- **[Hookup Guide](https://learn.sparkfun.com/tutorials/sparkfun-pulse-oximeter-and-heart-rate-monitor-hookup-guide)** - Basic hookup guide for the SparkFun Pulse Oximeter and Heart Rate Sensor.
+- **[Hookup Guide](https://learn.sparkfun.com/tutorials/sparkfun-pulse-oximeter-and-heart-rate-monitor-hookup-guide)** -
+  Basic hookup guide for the SparkFun Pulse Oximeter and Heart Rate Sensor.
 
 ## Products that use this library
 
@@ -60,8 +62,9 @@ The Wire library uses semaphores everywhere, and I do not know if this is really
 using semaphores itself. These code chunks are disabled by default but can be enabled by defining the macro
 `CONFIG_ENABLE_HAL_LOCKS` in the component config.
 
-The example contained in this repository is minimal. It is advised to check the examples from the original Sparkfun's repository. You may want to tweak the `Pulse Width` and `Sampling Rate` for your application, and different values
-may require different delay times in the loop process.
+The example contained in this repository is minimal. It is advised to check the examples from the original Sparkfun's
+repository. You may want to tweak the `Pulse Width` and `Sampling Rate` for your application, and different values may
+require different delay times in the loop process.
 
 The initial readings may be preceded by a few warnings from the I2C driver. You can ignore them safely.
 

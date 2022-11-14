@@ -1,4 +1,5 @@
-FROM espressif/idf:release-v4.4
+FROM espressif/idf:release-v4.4 AS build-44
+FROM espressif/idf:release-v5.0 AS build-50
 
 ARG DEBIAN_FRONTEND=nointeractive
 
@@ -8,10 +9,14 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get update \
   && apt-get install -y -q --no-install-recommends \
   cmake \
+  gpg \
   curl \
   git \
   doxygen \
   graphviz \
+  universal-ctags \
+  libjansson4 \
+  libyaml-0-2 \
   astyle \
   mlocate \
   nano \
@@ -33,17 +38,23 @@ ENV QEMU_URL=https://github.com/espressif/qemu/releases/download/${QEMU_REL}/${Q
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
-RUN wget --no-verbose ${QEMU_URL} \
+RUN curl -sSL -o ${QEMU_DIST} ${QEMU_URL} \
   && echo "${QEMU_SHA256} *${QEMU_DIST}" | sha256sum --check --strict - \
   && tar -xf $QEMU_DIST -C /opt \
   && rm ${QEMU_DIST}
 
+RUN curl https://get.trunk.io -fsSL | bash -s -- -y
+
+RUN curl https://raw.githubusercontent.com/petervanderdoes/gitflow-avh/develop/contrib/gitflow-installer.sh -fsSL | bash -s -- install stable
+
 ENV PATH=/opt/qemu/bin:${PATH}
 
-RUN wget --no-verbose https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-x86_64 \
-  && mv hadolint-Linux-x86_64 /usr/bin/hadolint \
+RUN curl -sSL -o /usr/bin/hadolint https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-x86_64 \
   && chmod 755 /usr/bin/hadolint
 
+RUN curl -sSL -o packages-microsoft-prod.deb "https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb" \
+  && dpkg -i packages-microsoft-prod.deb \
+  && rm packages-microsoft-prod.deb
 
 # installed dotnet for Astyle plugin. You'll get some warning about missing dotnet, but you can ignore it
 # RUN wget --no-verbose https://dot.net/v1/dotnet-install.sh \
@@ -56,6 +67,8 @@ RUN wget --no-verbose https://github.com/hadolint/hadolint/releases/download/v2.
 RUN echo "source /opt/esp/idf/export.sh > /dev/null 2>&1" >> ~/.bashrc \
   && updatedb
 
+# trunk-ignore(semgrep/dockerfile.security.missing-user.missing-user)
 ENTRYPOINT [ "/opt/esp/entrypoint.sh" ]
 
+# trunk-ignore(semgrep/dockerfile.security.missing-user.missing-user)
 CMD ["/bin/bash"]
