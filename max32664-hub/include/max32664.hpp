@@ -773,14 +773,6 @@ private:
 
     inline size_t _write(const int8_t *s) { return _write((const uint8_t *)s, _strlen(s)); }
 
-    inline size_t _write(uint32_t n) { return _write((uint8_t)n); }
-
-    inline size_t _write(int32_t n) { return _write((uint8_t)n); }
-
-    inline size_t _write(uint16_t n) { return _write((uint8_t)n); }
-
-    inline size_t _write(int16_t n) { return _write((uint8_t)n); }
-
     int16_t _read();
 
     // ~I2C Functions------------
@@ -886,7 +878,7 @@ private:
     uint16_t _tx_address = 0;
 
     uint32_t _time_out_millis =
-        (uint32_t)((float)(I2C_MASTER_TIMEOUT_MS) / (float)(portTICK_RATE_MS)); // default in i2c is 50ms
+        (uint32_t)((float)(I2C_MASTER_TIMEOUT_MS) / (float)(portTICK_PERIOD_MS)); // default in i2c is 50ms
     bool _non_stop = false;
 
 #if defined(CONFIG_ENABLE_HAL_LOCKS)

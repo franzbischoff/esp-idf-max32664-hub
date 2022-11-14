@@ -3,7 +3,8 @@
 {
   "name": "ESP-IDF QEMU",
   "build": {
-    "dockerfile": "Dockerfile"
+    "dockerfile": "Dockerfile",
+    "target": "build-50"
   },
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [
@@ -32,14 +33,18 @@
     "IBM.output-colorizer",
     "trunk.io",
     "EditorConfig.EditorConfig",
-    "microhobby.linuxkerneldev"
+    "microhobby.linuxkerneldev",
+    "remcohaszing.schemastore",
+    "betwo.vscode-doxygen-runner",
+    "Serhioromano.vscode-gitflow",
+    "marvhen.reflow-markdown"
   ],
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces,type=bind",
   /* the path of workspace folder to be opened after container is running
    */
   "workspaceFolder": "/workspaces",
   "mounts": [
-    "source=extensionCache,target=/root/.vscode-server/extensions,type=volume"
+    "source=extensionCache,target=/root/.vscode-server-insiders/extensions,type=volume"
   ],
   "containerEnv": {
     "IDF_CMAKE_WARN_UNINITIALIZED": "TRUE",
@@ -51,7 +56,7 @@
     "idf.useIDFKconfigStyle": true,
     "idf.saveScope": 2,
     "idf.customExtraPaths": "",
-    "idf.pythonBinPath": "/opt/esp/python_env/idf4.4_py3.8_env/bin/python",
+    "idf.pythonBinPath": "/opt/esp/python_env/idf4.3_py3.6_env/bin/python",
     "idf.toolsPath": "/opt/esp",
     "idf.gitPath": "/usr/bin/git",
     "idf.adapterTargetName": "esp32",

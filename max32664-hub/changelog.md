@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.4
+
+- Compatibility with IDF 5.0
+
 ## 0.9.3
 
 - Added example
