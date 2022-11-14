@@ -18,6 +18,7 @@ max_line_length = 120
 
 [{*.md,*.rst}]
 trim_trailing_whitespace = false
+max_line_length = 120
 
 [{Dockerfile.*}]
 indent_style = space

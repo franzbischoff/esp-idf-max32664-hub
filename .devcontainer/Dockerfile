@@ -12,6 +12,9 @@ RUN apt-get update \
   git \
   doxygen \
   graphviz \
+  universal-ctags \
+  libjansson4 \
+  libyaml-0-2 \
   astyle \
   mlocate \
   nano \
@@ -56,6 +59,8 @@ RUN wget --no-verbose https://github.com/hadolint/hadolint/releases/download/v2.
 RUN echo "source /opt/esp/idf/export.sh > /dev/null 2>&1" >> ~/.bashrc \
   && updatedb
 
+# trunk-ignore(semgrep/dockerfile.security.missing-user.missing-user)
 ENTRYPOINT [ "/opt/esp/entrypoint.sh" ]
 
+# trunk-ignore(semgrep/dockerfile.security.missing-user.missing-user)
 CMD ["/bin/bash"]
