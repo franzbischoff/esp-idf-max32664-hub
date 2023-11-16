@@ -1,7 +1,7 @@
-version: 0.9.0
+version: 0.9.1
 description: The first basic example
 dependencies:
-  idf: ">=4.4.0"
+  idf: ">=5.1.0"
   franzbischoff/max32664-hub:
-    version: ">=0.9.4"
+    version: ">=0.9.5"
     override_path: ../../../

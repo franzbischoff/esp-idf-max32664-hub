@@ -1,4 +1,4 @@
-version: 0.9.4
+version: 0.9.5
 description: MAX32664 Hub library for ESP-IDF
 url: https://github.com/franzbischoff/esp-idf-max32664-hub
 files:
@@ -8,4 +8,4 @@ files:
     - .clang-tidy
     - .editorconfig
 dependencies:
-  idf: ">=4.4.0"
+  idf: ">=5.1.0"
