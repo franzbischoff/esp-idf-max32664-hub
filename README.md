@@ -36,10 +36,19 @@ Distributed as-is; no warranty is given.
 
 ## How to Use
 
-1. This component is not available (yet) in the ESP-IDF component registry. So you need to clone this repository into
-   your project's `components` folder.
+### From the ESP-IDF component registry
 
-2. As a submodule: In your project, add this as a submodule to your `components/` directory.
+This component is available in the [ESP-IDF component registry](https://components.espressif.com/components/franzbischoff/max32664-hub).
+
+1. To add this component to your project, run: `idf.py add-dependency "franzbischoff/max32664-hub^0.9.5"`
+
+2. To create a project from the example, run: `idf.py create-project-from-example "franzbischoff/max32664-hub^0.9.5:basic"`
+
+### From this repository
+
+1. Clone this repository into your project's `components` folder.
+
+2. Or, as a submodule: In your project, add this as a submodule to your `components/` directory.
 
 ```bash
 git submodule add https://github.com/franzbischoff/esp-idf-max32664-hub
